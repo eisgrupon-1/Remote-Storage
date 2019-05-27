@@ -6,7 +6,7 @@ jdk:
   - oraclejdk8
   
 script:
- - gradle cucumber
+# - gradle cucumber
  - gradle test
  - gradle junitPlatformTest
  - gradle jacocoTestReport
