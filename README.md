@@ -34,7 +34,7 @@ https://trello.com/b/ZCUxthVy/iisoft-grupo
 
 ### Sprints
 
-https://github.com/eisgrupon-1/Remote-Storage-Backend/tree/master/documents
+https://github.com/eisgrupon-1/Remote-Storage-Backend/tree/master/Documents
 
 ## Pruebas de aceptación
 
