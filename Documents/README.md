@@ -21,12 +21,3 @@ https://github.com/eisgrupon-1/Remote-Storage-Frontend
 - [x] Agregar README.md para seguimiento de Sprints en Repositorio de Backend.
 
 ### Sprint 2(27/5 - 3/6)
-
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
