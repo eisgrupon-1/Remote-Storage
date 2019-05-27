@@ -5,8 +5,9 @@
 
 [![codecov](https://codecov.io/gh/eisgrupon-1/Remote-Storage-Backend/branch/master/graph/badge.svg)](https://codecov.io/gh/eisgrupon-1/Remote-Storage-Backend)
 
-## Descripción del Problema
+### Descripción del Problema
 
+La idea de este proyecto es poder interactuar con archivos propios de manera remota, sin necesidad de interactuar con un servicio Cloud.
 
 ### Integrantes
 
@@ -17,9 +18,25 @@ Nro | Nombre                | Legajo       | Mail
 3   |    Camila Pesci       |              | camila.pesci.a@gmail.com 
 4   |    Matias Rodriguez   |              | Matias_1412@hotmail.com
 
+##Links
 
-### Pruebas de aceptación
+### Repositorio de Backend
 
+https://github.com/eisgrupon-1/Remote-Storage-Backend
+
+### Repositorio de Frontend
+
+https://github.com/eisgrupon-1/Remote-Storage-Frontend
+
+### Trello
+
+https://trello.com/b/ZCUxthVy/iisoft-grupo
+
+### Sprints
+
+https://github.com/eisgrupon-1/Remote-Storage-Backend/tree/master/documents
+
+## Pruebas de aceptación
 
 ### Metodología
 
