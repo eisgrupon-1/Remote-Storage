@@ -22,11 +22,11 @@ https://github.com/eisgrupon-1/Remote-Storage-Frontend
 
 ### Sprint 2(27/5 - 3/6)
 
-- [] 
-- [] 
-- [] 
-- [] 
-- [] 
-- [] 
-- [] 
-- [] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
