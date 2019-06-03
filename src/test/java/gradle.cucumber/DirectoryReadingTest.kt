@@ -11,16 +11,16 @@ class DirectoryReadingTest{
     @Test
     fun testOutputForJustCreatedDirectoriesIsEmpty(){
         var outputManager = StringOutputManager()
-        var storageEntryPoint = RemoteStorageEntryPoint(outputManager,
-                File( "." ).getCanonicalPath() + File.separator + "RStorage")
-
         assertTrue(outputManager.getOutputString().isEmpty())
-        storageEntryPoint.run()
+
+       RemoteStorageEntryPoint(outputManager,
+                File( "." ).getCanonicalPath() + File.separator + "RStorage").run()
+
         assertEquals("Iniciando Remote Storage...\n\n" +
-                        "Start to traverse: RStorage\n" +
-                        "   Start to traverse: input\n" +
+                        "Started to traversing: RStorage\n" +
+                        "   Started to traversing: input\n" +
                         "   Finished traversing: input\n" +
-                        "   Start to traverse: output\n" +
+                        "   Started to traversing: output\n" +
                         "   Finished traversing: output\n" +
                         "Finished traversing: RStorage\n" +
                         "\nCerrando Remote Storage...\n",

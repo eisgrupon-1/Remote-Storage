@@ -10,17 +10,9 @@ import java.io.IOException
 import java.nio.file.FileAlreadyExistsException
 
 class RemoteStorageEntryPoint(val outputManager : OutputManager = ConsoleOutputManager(),
-                              defaultRootString : String = "C:\\Users\\Public\\RStorage" ) {
+                              defaultRootPath : String = "C:\\Users\\Public\\RStorage" ) {
 
-    var rootDir : Path
-    var inputDir : Path
-    var outputDir : Path
-
-    init {
-        rootDir = initializeDirectory(defaultRootString)
-        inputDir = initializeDirectory(defaultRootString + File.separator + "input")
-        outputDir = initializeDirectory(defaultRootString + File.separator + "output")
-    }
+    var rootDir : Path = initializeDirectoryStructure(defaultRootPath)
 
     fun run(){
         outputManager.printLine("Iniciando Remote Storage...\n")
@@ -28,9 +20,15 @@ class RemoteStorageEntryPoint(val outputManager : OutputManager = ConsoleOutputM
         outputManager.printLine("\nCerrando Remote Storage...")
     }
 
+    fun initializeDirectoryStructure(defaultRootPath: String) : Path {
+        val rootPath = initializeDirectory(defaultRootPath)
+        initializeDirectory(defaultRootPath + File.separator + "input")
+        initializeDirectory(defaultRootPath + File.separator + "output")
+        return rootPath
+    }
 
     private fun initializeDirectory(pathString : String) : Path {
-        var path = Paths.get(pathString)
+        val path = Paths.get(pathString)
         try {
             Files.createDirectory(path)
         } catch (e: FileAlreadyExistsException) { /* Do Nothing */
@@ -40,13 +38,9 @@ class RemoteStorageEntryPoint(val outputManager : OutputManager = ConsoleOutputM
         return path
     }
 
-    private fun listFiles(){
-        try {
-            Files.walkFileTree(rootDir, ListFilesInDirectory(outputManager))
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-    }
+    @Throws(IOException::class)
+    private fun listFiles() = Files.walkFileTree(rootDir, ListFilesInDirectory(outputManager))
+
 }
 
 
