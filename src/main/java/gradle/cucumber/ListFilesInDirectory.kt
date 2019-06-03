@@ -14,25 +14,19 @@ class ListFilesInDirectory(val outputManager : OutputManager) : SimpleFileVisito
 
 
     override fun visitFile(file: Path, attributes: BasicFileAttributes): FileVisitResult {
-        outputManager.indent()
-        outputManager.printLine("file:" + file.fileName)
+        outputManager.visitFile(file)
         return FileVisitResult.CONTINUE
     }
 
     @Throws(IOException::class)
-    override fun preVisitDirectory(directory: Path,
-                                   attributes: BasicFileAttributes): FileVisitResult {
-        outputManager.indent()
-        outputManager.printLine("Start to traverse: " + directory.fileName)
-        outputManager.addIndent()
+    override fun preVisitDirectory(directory: Path, attributes: BasicFileAttributes): FileVisitResult {
+        outputManager.preVisitDirectory(directory)
         return FileVisitResult.CONTINUE
     }
 
     @Throws(IOException::class)
     override fun postVisitDirectory(directory: Path, e: IOException?): FileVisitResult {
-        outputManager.reduceIndent()
-        outputManager.indent()
-        outputManager.printLine("Finished traversing: " + directory.fileName)
+        outputManager.postVisitDirectory(directory)
         return FileVisitResult.CONTINUE
     }
 
