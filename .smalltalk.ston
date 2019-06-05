@@ -11,5 +11,6 @@ SmalltalkCISpec {
 		#coverage : {
 			#packages : ['RemoteStorage*']
 		}
-	}
+	},
+	#failOnZeroTests : false
 }
