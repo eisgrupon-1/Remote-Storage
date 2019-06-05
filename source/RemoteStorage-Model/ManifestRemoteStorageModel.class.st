@@ -1,5 +1,5 @@
 Class {
-	#name : #ManigestRemoteStorageModel,
+	#name : #ManifestRemoteStorageModel,
 	#superclass : #PackageManifest,
 	#category : #'RemoteStorage-Model'
 }

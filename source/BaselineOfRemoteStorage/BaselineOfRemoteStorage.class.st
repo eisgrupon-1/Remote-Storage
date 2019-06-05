@@ -1,11 +1,11 @@
 Class {
-	#name : #BaselineOfRemoteRepository,
+	#name : #BaselineOfRemoteStorage,
 	#superclass : #BaselineOf,
 	#category : #BaselineOfRemoteStorage
 }
 
 { #category : #baselines }
-BaselineOfRemoteRepository >> baseline: spec [
+BaselineOfRemoteStorage >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
@@ -18,7 +18,7 @@ BaselineOfRemoteRepository >> baseline: spec [
 ]
 
 { #category : #baselines }
-BaselineOfRemoteRepository >> baselineOfRemoteStorage: spec [
+BaselineOfRemoteStorage >> baselineOfRemoteStorage: spec [
 	spec
 		package: 'RemoteStorage-Model'
 			with: [ spec
@@ -32,7 +32,7 @@ BaselineOfRemoteRepository >> baselineOfRemoteStorage: spec [
 ]
 
 { #category : #baselines }
-BaselineOfRemoteRepository >> setUpDependencies: spec [
+BaselineOfRemoteStorage >> setUpDependencies: spec [
 	spec
 		baseline: 'ApplicationStarter'
 		with: [ spec repository: 'github://ba-st/ApplicationStarter:v1/source' ].
