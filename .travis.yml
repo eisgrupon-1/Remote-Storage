@@ -1,18 +1,8 @@
-install: gradle wrapper --gradle-version 4.2
+language: smalltalk
+sudo: false
 
-language: java
+os: 
+  - linux
 
-jdk:
-  - oraclejdk8
-  
-script:
-# - gradle cucumber
- - gradle test
- - gradle junitPlatformTest
- - gradle jacocoTestReport
-
-before_script:
-- chmod a+x gradlew
-
-after_success:
-- bash <(curl -s https://codecov.io/bash)
+smalltalk:
+  - Pharo64-7.0
