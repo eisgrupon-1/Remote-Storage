@@ -22,7 +22,7 @@ BaselineOfRemoteStorage >> baselineOfRemoteStorage: spec [
 	spec
 		package: 'RemoteStorage-Model'
 			with: [ spec
-				requires: #('Chalten' 'Kepler-Core' 'Stargate-Core' 'ApplicationStarter') ];
+				requires: #('Kepler-Core' 'Stargate-Core' 'ApplicationStarter') ];
 		group: 'Deployment' with: 'RemoteStorage-Model'.
 	spec
 		package: 'RemoteStorage-Tests'
