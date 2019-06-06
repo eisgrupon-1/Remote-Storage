@@ -10,7 +10,7 @@ SmalltalkCISpec {
 	#testing : {
 		#coverage : {
 			#packages : ['RemoteStorage*']
-		}
-	},
-	#failOnZeroTests : false
+		},
+		#failOnZeroTests : false
+	}
 }
