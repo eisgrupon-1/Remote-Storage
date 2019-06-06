@@ -54,10 +54,5 @@ BaselineOfRemoteStorage >> setUpDependencies: spec [
 			with: [ spec loads: 'Deployment' ];
 		project: 'Stargate-SUnit'
 			copyFrom: 'Stargate'
-			with: [ spec loads: 'Stargate-Model-Tests' ].
-	spec
-		baseline: 'Chalten'
-		with: [ spec
-				repository: 'github://ba-st/Chalten:v8/source';
-				loads: #('Chalten-Gregorian-Calendar') ]
+			with: [ spec loads: 'Stargate-Model-Tests' ]
 ]
