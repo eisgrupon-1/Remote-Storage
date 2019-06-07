@@ -18,6 +18,22 @@ Nro | Nombre                | Legajo       | Mail
 3   |    Camila Pesci       |              | camila.pesci.a@gmail.com 
 4   |    Matias Rodriguez   |              | Matias_1412@hotmail.com
 
+## Proyecto
+
+Este backend esta realizado en Pharo 7.0 (Smalltalk).
+Para instalarlo ejecute en un Playground:
+
+	```smalltalk
+Metacello new
+		baseline: 'RemoteStorage';
+		githubUser: 'eisgrupon-1'
+		project: 'Remote-Storage-Backend'
+		commitish: 'master'
+		path: 'source';
+		load
+	```
+
+
 ## Links
 
 ### Repositorio de Backend
