@@ -29,6 +29,7 @@ FileManagementSystem >> implementedInterfaces [
 
 { #category : #initialization }
 FileManagementSystem >> initialize [
+	super initialize.
 	self
 		ensureRemoteStorageDirectoryExists;
 		initializeFiles

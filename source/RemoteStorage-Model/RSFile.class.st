@@ -32,13 +32,6 @@ RSFile >> printOn: aStream [
 		nextPutAll: 'Tamaño: ' , self sizeAsBytes asString
 ]
 
-{ #category : #acccessing }
-RSFile >> size [
-	"Size in MB"
-
-	^ fileReference size / 1048576
-]
-
 { #category : #accessing }
 RSFile >> sizeAsBytes [
 	^ fileReference size

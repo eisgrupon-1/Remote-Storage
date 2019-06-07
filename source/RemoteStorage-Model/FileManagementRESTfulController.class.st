@@ -17,6 +17,20 @@ FileManagementRESTfulController >> entityTagOf: resource encodedAs: mediaType wi
 	^ ZnETag with: (MD5 hashMessage: resource printString) hex
 ]
 
+{ #category : #'private - accessing' }
+FileManagementRESTfulController >> fileManagementSystem [
+	^ fileManagementSystem
+]
+
+{ #category : #'private - accessing' }
+FileManagementRESTfulController >> getFilesBasedOn: aTeaRequest within: aContext [
+	^ self
+		get: [ self fileManagementSystem getAllFiles ]
+		asCollectionEncodedUsing: self specification filesMappingKey
+		basedOn: aTeaRequest
+		within: aContext
+]
+
 { #category : #initialization }
 FileManagementRESTfulController >> initializeWithin: aFileManagementSystem [
 	fileManagementSystem := aFileManagementSystem
@@ -38,12 +52,12 @@ FileManagementRESTfulController >> provideHypermediaPolicy [
 
 { #category : #'private - accessing' }
 FileManagementRESTfulController >> providePaginationPolicy [
-	^ RESTfulControllerDoNotPaginateCollectionsPolicyTest for: self
+	^ RESTfulControllerDoNotPaginateCollectionsPolicy for: self
 ]
 
 { #category : #'private - accessing' }
 FileManagementRESTfulController >> provideResourceCreationPolicy [
-	^ RESTfulControllerResourceCreationPolicy for: self
+	^ RESTfulControllerDoNotRespondCreatedEntityPolicy for: self
 ]
 
 { #category : #specification }
