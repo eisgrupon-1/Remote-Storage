@@ -27,7 +27,7 @@ RemoteStorageCommandLineHandlerTests >> testAccessing [
 		assert: RemoteStorageCommandLineHandler description
 			equals: 'Start Remote Storage API';
 		assert: handler logPrefix equals: 'remote-storage';
-		assert: (handler configuration at: #port) equals: 6666;
+		assert: (handler configuration at: #port) equals: 6789;
 		assert: (handler configuration at: #'api-server-url') equals: '/'
 ]
 
