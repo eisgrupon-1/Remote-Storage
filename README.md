@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/eisgrupon-1/Remote-Storage-Backend.svg?branch=master)](https://travis-ci.org/eisgrupon-1/Remote-Storage-Backend)
 
-[![codecov](https://codecov.io/gh/eisgrupon-1/Remote-Storage-Backend/branch/master/graph/badge.svg)](https://codecov.io/gh/eisgrupon-1/Remote-Storage-Backend)
+[![Coverage Status](https://coveralls.io/repos/github/eisgrupon-1/Remote-Storage-Backend/badge.svg?branch=master)](https://coveralls.io/repos/github/eisgrupon-1/Remote-Storage-Backend?branch=master)
 
 ### Descripción del Problema
 
@@ -17,6 +17,22 @@ Nro | Nombre                | Legajo       | Mail
 2   |    Juan  Escalada     |              | jf.escalada92@gmail.com
 3   |    Camila Pesci       |              | camila.pesci.a@gmail.com 
 4   |    Matias Rodriguez   |              | Matias_1412@hotmail.com
+
+## Proyecto
+
+Este backend esta realizado en Pharo 7.0 (Smalltalk).
+Para instalarlo ejecute en un Playground:
+
+	```smalltalk
+Metacello new
+		baseline: 'RemoteStorage';
+		githubUser: 'eisgrupon-1'
+		project: 'Remote-Storage-Backend'
+		commitish: 'master'
+		path: 'source';
+		load
+	```
+
 
 ## Links
 
