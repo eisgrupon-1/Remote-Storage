@@ -19,6 +19,7 @@ FileManagementSystem >> ensureRemoteStorageDirectoryExists [
 
 { #category : #initialization }
 FileManagementSystem >> getAllFiles [
+	self updateFiles.
 	^ files
 ]
 
@@ -37,8 +38,9 @@ FileManagementSystem >> initialize [
 
 { #category : #initialization }
 FileManagementSystem >> initializeFiles [
-	files := self remoteStorageDirectoryReference allFiles
-		collect: [ :file | RSFile from: file ]
+
+	files := (self remoteStorageDirectoryReference allFiles
+		collect: [ :file | RSFile from: file ]) asOrderedCollection
 ]
 
 { #category : #accessing }
@@ -54,6 +56,16 @@ FileManagementSystem >> remoteStorageDirectoryReference [
 { #category : #initialization }
 FileManagementSystem >> remoteStorageFolderName [
 	^ 'RSFiles'
+]
+
+{ #category : #initialization }
+FileManagementSystem >> updateFiles [
+
+	self remoteStorageDirectoryReference allFiles
+		do: [ :file | 
+			((files collect: #name)
+				anySatisfy: [ :fileName | fileName = file pathSegments last ])
+				ifFalse: [ files add: (RSFile from: file) ] ]
 ]
 
 { #category : #initialization }

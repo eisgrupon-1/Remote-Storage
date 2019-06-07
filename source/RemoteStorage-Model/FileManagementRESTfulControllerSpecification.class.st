@@ -4,7 +4,7 @@ Class {
 	#category : #'RemoteStorage-Model-API'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #configuration }
 FileManagementRESTfulControllerSpecification >> addJsonObjectivesVersion1dot0MappingIn: aBuilder [
 	aBuilder
 		addDefaultRuleToEncode: self filesMappingKey
@@ -21,29 +21,29 @@ FileManagementRESTfulControllerSpecification >> addJsonObjectivesVersion1dot0Map
 						nextPut: resource ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #acccessing }
 FileManagementRESTfulControllerSpecification >> endpoint [
 	^ '/rsfiles'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #acccessing }
 FileManagementRESTfulControllerSpecification >> fileTemplate [
 	^ '<1s>/%<<2s>:IsUUID>'
 		expandMacrosWith: self endpoint
 		with: #identifier
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #acccessing }
 FileManagementRESTfulControllerSpecification >> fileVersion1dot0dot0MediaType [
 	^ 'application/vnd.remotestorage.file+json;version=1.0.0' asMediaType
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #acccessing }
 FileManagementRESTfulControllerSpecification >> filesMappingKey [
 	^ 'rsfiles'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #acccessing }
 FileManagementRESTfulControllerSpecification >> getFilesRoute [
 	^ RouteSpecification
 		handling: #GET
