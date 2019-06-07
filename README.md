@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/eisgrupon-1/Remote-Storage-Backend.svg?branch=master)](https://travis-ci.org/eisgrupon-1/Remote-Storage-Backend)
 
-[![codecov](https://codecov.io/gh/eisgrupon-1/Remote-Storage-Backend/branch/master/graph/badge.svg)](https://codecov.io/gh/eisgrupon-1/Remote-Storage-Backend)
+[![Coverage Status](https://coveralls.io/repos/github/eisgrupon-1/Remote-Storage-Backend/badge.svg?branch=master)](https://coveralls.io/repos/github/eisgrupon-1/Remote-Storage-Backend?branch=master)
 
 ### Descripción del Problema
 
