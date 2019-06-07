@@ -29,7 +29,7 @@ RemoteStorageCommandLineHandler >> configurationDefinition [
 		add:
 			(OptionalArgument
 				named: #port
-				defaultingTo: 6666
+				defaultingTo: 6789
 				convertingWith: #asNumber);
 		yourself
 ]

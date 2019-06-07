@@ -21,7 +21,7 @@ RemoteStorageCommandLineHandlerTests >> testAccessing [
 				withArguments:
 					{RemoteStorageCommandLineHandler commandName.
 					'--api-server-url=/'.
-					'--port=6666'}).
+					'--port=6789'}).
 	self
 		assert: RemoteStorageCommandLineHandler commandName equals: 'start';
 		assert: RemoteStorageCommandLineHandler description
