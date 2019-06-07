@@ -23,16 +23,15 @@ Nro | Nombre                | Legajo       | Mail
 Este backend esta realizado en Pharo 7.0 (Smalltalk).
 Para instalarlo ejecute en un Playground:
 
-	```smalltalk
-Metacello new
-		baseline: 'RemoteStorage';
-		githubUser: 'eisgrupon-1'
-		project: 'Remote-Storage-Backend'
-		commitish: 'master'
-		path: 'source';
-		load
-	```
-
+  ```smalltalk
+Metacello new 
+	baseline: 'RemoteStorage';
+	githubUser: 'eisgrupon-1'
+	project: 'Remote-Storage-Backend'
+	commitish: 'master'
+	path: 'source';
+	load
+  ```
 
 ## Links
 
