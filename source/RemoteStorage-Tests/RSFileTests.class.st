@@ -40,3 +40,13 @@ RSFileTests >> testCreation [
 		assert: rsfile name equals: 'example.txt';
 		assert: rsfile sizeAsBytes equals: 15
 ]
+
+{ #category : #tests }
+RSFileTests >> testPrintString [
+	| rsfile |
+	rsfile := RSFile
+		from: (Path from: './RSFiles/example.txt') asFileReference.
+	self
+		assert: rsfile printString
+		equals: 'Nombre: example.txt	Tamaño: 15'
+]
