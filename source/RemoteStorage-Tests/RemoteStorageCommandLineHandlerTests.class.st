@@ -4,7 +4,7 @@ Class {
 	#category : #'RemoteStorage-Tests-API'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #support }
 RemoteStorageCommandLineHandlerTests >> implementedEndpoints [
 	^ ResourceRESTfulControllerSpecification allSubclasses
 		select:
@@ -12,7 +12,7 @@ RemoteStorageCommandLineHandlerTests >> implementedEndpoints [
 		thenCollect: [ :spec | spec new endpoint ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 RemoteStorageCommandLineHandlerTests >> testAccessing [
 	| handler |
 	handler := RemoteStorageCommandLineHandler
@@ -31,7 +31,7 @@ RemoteStorageCommandLineHandlerTests >> testAccessing [
 		assert: (handler configuration at: #'api-server-url') equals: '/'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 RemoteStorageCommandLineHandlerTests >> testControllers [
 	| controllers endpoints |
 	controllers := RemoteStorageCommandLineHandler new controllers.
@@ -42,11 +42,11 @@ RemoteStorageCommandLineHandlerTests >> testControllers [
 			self
 				assert: (endpoints includes: endpoint)
 				description:
-					('<1s> is imlpemented but not included on the installed controllers'
+					('<1s> is implemented but not included on the installed controllers'
 						expandMacrosWith: endpoint) ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 RemoteStorageCommandLineHandlerTests >> testRootSystem [
 	| rootSystem |
 	rootSystem := RemoteStorageCommandLineHandler new rootSystem.

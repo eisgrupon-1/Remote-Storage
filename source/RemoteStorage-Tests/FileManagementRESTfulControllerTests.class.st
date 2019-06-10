@@ -82,6 +82,8 @@ FileManagementRESTfulControllerTests >> testGetFilesWhenThereIsAFile [
 				assert: file sizeAsBytes equals: 15;
 				assert:
 					((file links at: #self)
-						beginsWith: 'https://api.remotestorage.net/rsfiles/') ] ]
+						beginsWith:
+							('https://api.remotestorage.net/rsfiles/<1s>'
+								expandMacrosWith: fileManagementSystem getAllFiles first uuid printString)) ] ]
 		ensure: [ self deleteExampleFile ]
 ]
