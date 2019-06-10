@@ -10,5 +10,6 @@ ManifestRemoteStorageModel class >> initialize [
 	Kepler
 		registerInterfaceAt: #FileManagementSystemInterface
 		named: 'Sistema de manejo de archivos'
-		declaring: #(#getAllFiles #writeFileNamed:withExtention:withContents:)
+		declaring:
+			#(#getAllFiles #writeFileNamed:withExtention:withContents: #deleteFileNamed:withExtention:)
 ]

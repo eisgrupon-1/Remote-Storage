@@ -7,6 +7,14 @@ Class {
 	#category : #'RemoteStorage-Model-Core'
 }
 
+{ #category : #initialization }
+FileManagementSystem >> deleteFileNamed: aName withExtention: anExtention [
+	| fileRelativePath |
+	fileRelativePath := self remoteStorageFolderName , '/' , aName , '.'
+		, anExtention.
+	(FileStream fileNamed: fileRelativePath) delete
+]
+
 { #category : #installing }
 FileManagementSystem >> dependencies [
 	^ #()
