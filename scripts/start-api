@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ -f pharo ]
+then
+	echo ":)"
+else
+	echo ":("
+	./get-clean
+	echo ":)"
+fi
+
+echo "Starting Up Remote Storage API"
+echo "url: localhost"
+echo "port: 6789"
+./pharo-ui Pharo.image start --api-server-url=/
