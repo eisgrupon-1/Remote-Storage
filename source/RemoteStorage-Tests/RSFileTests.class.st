@@ -10,14 +10,13 @@ Class {
 { #category : #tests }
 RSFileTests >> createExampleFile [
 	fileManagementSystem
-		writeFileNamed: 'example'
-		withExtention: 'txt'
+		writeFileNamed: 'example.txt'
 		withContents: #(1 2 3 4 5 6 7 8 9 0 1 2 3 4 5) asByteArray
 ]
 
 { #category : #tests }
 RSFileTests >> deleteExampleFile [
-	fileManagementSystem deleteFileNamed: 'example' withExtention: 'txt'
+	fileManagementSystem deleteFileNamed: 'example.txt'
 ]
 
 { #category : #tests }

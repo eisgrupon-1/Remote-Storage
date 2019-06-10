@@ -15,14 +15,13 @@ FileManagementRESTfulControllerTests >> baseUrl [
 { #category : #'private - support' }
 FileManagementRESTfulControllerTests >> createExampleFile [
 	fileManagementSystem
-		writeFileNamed: 'example'
-		withExtention: 'txt'
+		writeFileNamed: 'example.txt'
 		withContents: #(1 2 3 4 5 6 7 8 9 0 1 2 3 4 5) asByteArray
 ]
 
 { #category : #'private - support' }
 FileManagementRESTfulControllerTests >> deleteExampleFile [
-	fileManagementSystem deleteFileNamed: 'example' withExtention: 'txt'
+	fileManagementSystem deleteFileNamed: 'example.txt'
 ]
 
 { #category : #'private - support' }
@@ -30,6 +29,16 @@ FileManagementRESTfulControllerTests >> getAllFiles [
 	^ resourceController
 		getFilesBasedOn: (self requestToGet: self resourceUrl accepting: '*/*')
 		within: self newHttpRequestContext
+]
+
+{ #category : #'private - support' }
+FileManagementRESTfulControllerTests >> requestToDeleteFile: aRSFileToDelete [
+	^ TeaRequest
+		fromZnRequest: (ZnRequest delete: (self urlOf: aRSFileToDelete))
+		pathParams:
+			(Dictionary new
+				at: #identifier put: aRSFileToDelete uuid;
+				yourself)
 ]
 
 { #category : #'private - support' }
@@ -46,6 +55,20 @@ FileManagementRESTfulControllerTests >> setUpResourceController [
 	fileManagementSystem := FileManagementSystem new.
 	resourceController := FileManagementRESTfulController
 		within: fileManagementSystem
+]
+
+{ #category : #'private - support' }
+FileManagementRESTfulControllerTests >> testDeleteFile [
+	| updateResponse |
+	self assert: fileManagementSystem getAllFiles isEmpty.
+	self createExampleFile.
+	self assert: fileManagementSystem getAllFiles size equals: 1.
+	updateResponse := resourceController
+		deleteFileBasedOn: (self requestToDeleteFile: fileManagementSystem getAllFiles first)
+		within: self newHttpRequestContext.
+	self
+		assert: updateResponse isSuccess;
+		assert: fileManagementSystem getAllFiles isEmpty
 ]
 
 { #category : #'private - support' }
@@ -86,4 +109,9 @@ FileManagementRESTfulControllerTests >> testGetFilesWhenThereIsAFile [
 							('https://api.remotestorage.net/rsfiles/<1s>'
 								expandMacrosWith: fileManagementSystem getAllFiles first uuid printString)) ] ]
 		ensure: [ self deleteExampleFile ]
+]
+
+{ #category : #'private - support' }
+FileManagementRESTfulControllerTests >> urlOf: aRSFile [
+	^ (self resourceUrl / aRSFile uuid asString) asString
 ]

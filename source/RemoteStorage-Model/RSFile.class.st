@@ -14,6 +14,11 @@ RSFile class >> from: aFileReference [
 	^ self new initializeFrom: aFileReference
 ]
 
+{ #category : #acccessing }
+RSFile >> fileReference [
+	^ fileReference
+]
+
 { #category : #initialization }
 RSFile >> initializeFrom: aFileReference [
 	fileReference := aFileReference

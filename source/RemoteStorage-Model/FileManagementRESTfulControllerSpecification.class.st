@@ -5,7 +5,32 @@ Class {
 }
 
 { #category : #configuration }
-FileManagementRESTfulControllerSpecification >> addJsonObjectivesVersion1dot0MappingIn: aBuilder [
+FileManagementRESTfulControllerSpecification >> addJsonFileVersion1dot0dot0DecoderMappingIn: aBuilder [
+	aBuilder
+		addDefaultRuleToDecode: self fileVersion1dot0dot0MediaType
+		to: self fileMappingKey
+		using: [ :json :context | 
+			| raw |
+			raw := NeoJSONObject fromString: json.
+			RawFile from: raw ]
+]
+
+{ #category : #configuration }
+FileManagementRESTfulControllerSpecification >> addJsonFileVersion1dot0dot0MappingIn: aBuilder [
+	aBuilder
+		addDefaultRuleToEncode: self fileMappingKey
+		to: self fileVersion1dot0dot0MediaType
+		using: [ :resource :context | 
+			String
+				streamContents: [ :stream | 
+					(NeoJSONWriter on: stream)
+						for: RSFile
+							do: [ :mapping | mapping mapAccessors: #(#name #sizeAsBytes #rawContent) ];
+						nextPut: resource ] ]
+]
+
+{ #category : #configuration }
+FileManagementRESTfulControllerSpecification >> addJsonFilesVersion1dot0dot0MappingIn: aBuilder [
 	aBuilder
 		addDefaultRuleToEncode: self filesMappingKey
 		to: self fileVersion1dot0dot0MediaType
@@ -24,6 +49,11 @@ FileManagementRESTfulControllerSpecification >> addJsonObjectivesVersion1dot0Map
 { #category : #acccessing }
 FileManagementRESTfulControllerSpecification >> endpoint [
 	^ '/rsfiles'
+]
+
+{ #category : #acccessing }
+FileManagementRESTfulControllerSpecification >> fileMappingKey [
+	^ 'rsfile'
 ]
 
 { #category : #acccessing }

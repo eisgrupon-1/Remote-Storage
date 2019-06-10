@@ -8,11 +8,15 @@ Class {
 }
 
 { #category : #initialization }
-FileManagementSystem >> deleteFileNamed: aName withExtention: anExtention [
-	| fileRelativePath |
-	fileRelativePath := self remoteStorageFolderName , '/' , aName , '.'
-		, anExtention.
-	(FileStream fileNamed: fileRelativePath) delete
+FileManagementSystem >> deleteFileNamed: aFileName [
+	self getAllFiles
+		detect: [ :file | file name = aFileName ]
+		ifFound: [ :file | 
+			| fileRelativePath |
+			fileRelativePath := self remoteStorageFolderName , '/' , aFileName.
+			(FileStream fileNamed: fileRelativePath) delete.
+			files remove: file ]
+		ifNone: [ "Do nothing" ]
 ]
 
 { #category : #installing }
@@ -23,6 +27,14 @@ FileManagementSystem >> dependencies [
 { #category : #initialization }
 FileManagementSystem >> ensureRemoteStorageDirectoryExists [
 	self remoteStorageDirectoryReference ensureCreateDirectory
+]
+
+{ #category : #initialization }
+FileManagementSystem >> fileIdentifiedBy: anUUID ifFound: aFoundBlock ifNone: aNoneBlock [
+	^ self getAllFiles
+		detect: [ :file | file uuid = anUUID ]
+		ifFound: aFoundBlock
+		ifNone: aNoneBlock
 ]
 
 { #category : #initialization }
@@ -77,10 +89,9 @@ FileManagementSystem >> updateFiles [
 ]
 
 { #category : #initialization }
-FileManagementSystem >> writeFileNamed: aName withExtention: anExtention withContents: aByteArray [
+FileManagementSystem >> writeFileNamed: aFileName withContents: aByteArray [
 	| newFileRelativePath |
-	newFileRelativePath := self remoteStorageFolderName , '/' , aName
-		, '.' , anExtention.
+	newFileRelativePath := self remoteStorageFolderName , '/' , aFileName.
 	FileStream
 		newFileNamed: newFileRelativePath
 		do: [ :fileStream | 
