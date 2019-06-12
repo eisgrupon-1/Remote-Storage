@@ -49,8 +49,8 @@ La aplicación deberá permitir la descarga automáticamente a través de un bot
 ### Sprint 3 (3/6 - 10/6)
 
 
-- [x]Buscar archivos (3 SP)
-- [x]Login de usuario por email (3 SP)
+- [x] Buscar archivos (3 SP)
+- [x] Login de usuario por email (3 SP)
 
 
 **User Story: Buscar archivos**
