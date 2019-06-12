@@ -9,13 +9,13 @@
 - [x] Agregar y configurar TravisCI y Codecov para Backend.
 - [x] Agregar README.md para seguimiento de Sprints en Repositorio de Backend.
 
-### Sprint 2(27/5 - 3/6)
+### Sprint 2 (27/5 - 3/6)
 
 - [x] Login  (3 SP)
 - [x] Subir archivos (5 SP) 
 - [x] Descargar Archivos (5 SP)
 
-- [x] User Story: Subir archivos
+**User Story: Subir archivos**
 
 Como usuario quiero poder subir un archivo para almacenarlo en el servidor.
 
@@ -27,7 +27,7 @@ Se deberá presionar un botón en la pantalla que permita al usuario elegir el a
 
 
 
-- [x] User Story: Login
+**User Story: Login**
 
 Como usuario quiero poder logearme para acceder a la aplicación
 
@@ -38,7 +38,7 @@ Se deberá presionar el botón de login que aparecerá en la pantalla.
 
 
 
-- [x] User Story: Descargar Archivos
+**User Story: Descargar Archivos**
 
 Como usuario quiero poder descargar un archivo para poder utilizarlo desde cualquier lugar.
 
@@ -46,15 +46,14 @@ Criterios de aceptación:
 La aplicación deberá mostrar los archivos a descargar
 La aplicación deberá permitir la descarga automáticamente a través de un botón de descarga
 
-### Sprint 3(3/6 - 10/6)
-
-- [x] User Stories para Sprint 3:
-
-Buscar archivos (3 SP)
-Login de usuario por email (3 SP)
+### Sprint 3 (3/6 - 10/6)
 
 
-- [x] User Story: Buscar archivos
+- [x]Buscar archivos (3 SP)
+- [x]Login de usuario por email (3 SP)
+
+
+**User Story: Buscar archivos**
 
 Como usuario quiero buscar mis archivos subidos al servidor remoto.
 
@@ -63,7 +62,7 @@ El usuario podrá buscar archivos por nombre
 No ejecutar la búsqueda si el campo de texto está vacío
 Se mostrará un botón junto al cuadro de texto para realizar la búsqueda
 
-User Story: Login de usuario por email
+**User Story: Login de usuario por email**
 
 Como usuario quiero poder ingresar con mi email o usuario.
 
@@ -72,7 +71,7 @@ La aplicación deberá mostrar un campo de texto “email”.
 La aplicación deberá validar si el formato del email es el correcto.
 El usuario podrá ingresar tanto con su apodo como con su email.
 
-### Sprint 4(10/6 - 17/6)
+### Sprint 4 (10/6 - 17/6)
 
 - [x] Terminar de completar la historia pendiente Descarga de archivos
 - [x] Terminar de completar la historia pendiente Subir archivos
