@@ -80,12 +80,23 @@ FileManagementSystem >> remoteStorageFolderName [
 
 { #category : #initialization }
 FileManagementSystem >> updateFiles [
-
+	| filesToRemove |
+	filesToRemove := OrderedCollection new.
 	self remoteStorageDirectoryReference allFiles
 		do: [ :file | 
 			((files collect: #name)
 				anySatisfy: [ :fileName | fileName = file pathSegments last ])
-				ifFalse: [ files add: (RSFile from: file) ] ]
+				ifFalse: [ files add: (RSFile from: file) ] ].
+	((files collect: #name)
+		difference:
+			(self remoteStorageDirectoryReference allFiles
+				collect: [ :file | file pathSegments last ]))
+		do: [ :missingName | 
+			files
+				detect: [ :file | file name = missingName ]
+				ifFound: [ :file | filesToRemove add: file ]
+				ifNone: [  ] ].
+	filesToRemove do: [ :file | files remove: file ]
 ]
 
 { #category : #initialization }
