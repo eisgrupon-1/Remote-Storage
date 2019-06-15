@@ -8,11 +8,15 @@ Class {
 }
 
 { #category : #initialization }
-FileManagementSystem >> deleteFileNamed: aName withExtention: anExtention [
-	| fileRelativePath |
-	fileRelativePath := self remoteStorageFolderName , '/' , aName , '.'
-		, anExtention.
-	(FileStream fileNamed: fileRelativePath) delete
+FileManagementSystem >> deleteFileNamed: aFileName [
+	self getAllFiles
+		detect: [ :file | file name = aFileName ]
+		ifFound: [ :file | 
+			| fileRelativePath |
+			fileRelativePath := self remoteStorageFolderName , '/' , aFileName.
+			(FileStream fileNamed: fileRelativePath) delete.
+			files remove: file ]
+		ifNone: [ "Do nothing" ]
 ]
 
 { #category : #installing }
@@ -23,6 +27,14 @@ FileManagementSystem >> dependencies [
 { #category : #initialization }
 FileManagementSystem >> ensureRemoteStorageDirectoryExists [
 	self remoteStorageDirectoryReference ensureCreateDirectory
+]
+
+{ #category : #initialization }
+FileManagementSystem >> fileIdentifiedBy: anUUID ifFound: aFoundBlock ifNone: aNoneBlock [
+	^ self getAllFiles
+		detect: [ :file | file uuid = anUUID ]
+		ifFound: aFoundBlock
+		ifNone: aNoneBlock
 ]
 
 { #category : #initialization }
@@ -68,19 +80,29 @@ FileManagementSystem >> remoteStorageFolderName [
 
 { #category : #initialization }
 FileManagementSystem >> updateFiles [
-
+	| filesToRemove |
+	filesToRemove := OrderedCollection new.
 	self remoteStorageDirectoryReference allFiles
 		do: [ :file | 
 			((files collect: #name)
 				anySatisfy: [ :fileName | fileName = file pathSegments last ])
-				ifFalse: [ files add: (RSFile from: file) ] ]
+				ifFalse: [ files add: (RSFile from: file) ] ].
+	((files collect: #name)
+		difference:
+			(self remoteStorageDirectoryReference allFiles
+				collect: [ :file | file pathSegments last ]))
+		do: [ :missingName | 
+			files
+				detect: [ :file | file name = missingName ]
+				ifFound: [ :file | filesToRemove add: file ]
+				ifNone: [  ] ].
+	filesToRemove do: [ :file | files remove: file ]
 ]
 
 { #category : #initialization }
-FileManagementSystem >> writeFileNamed: aName withExtention: anExtention withContents: aByteArray [
+FileManagementSystem >> writeFileNamed: aFileName withContents: aByteArray [
 	| newFileRelativePath |
-	newFileRelativePath := self remoteStorageFolderName , '/' , aName
-		, '.' , anExtention.
+	newFileRelativePath := self remoteStorageFolderName , '/' , aFileName.
 	FileStream
 		newFileNamed: newFileRelativePath
 		do: [ :fileStream | 

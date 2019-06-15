@@ -14,6 +14,16 @@ RSFile class >> from: aFileReference [
 	^ self new initializeFrom: aFileReference
 ]
 
+{ #category : #acccessing }
+RSFile >> filePath [
+	^ 'RSFiles/' , fileReference pathSegments last
+]
+
+{ #category : #acccessing }
+RSFile >> fileReference [
+	^ fileReference
+]
+
 { #category : #initialization }
 RSFile >> initializeFrom: aFileReference [
 	fileReference := aFileReference
@@ -30,6 +40,17 @@ RSFile >> printOn: aStream [
 		nextPutAll: 'Nombre: ' , self name;
 		tab;
 		nextPutAll: 'Tamaño: ' , self sizeAsBytes asString
+]
+
+{ #category : #acccessing }
+RSFile >> rawContents [
+	^ FileStream
+		fileNamed: self filePath
+		do: [ :fileStream | 
+			| contents |
+			contents := fileStream contentsOfEntireFile.
+			fileStream close.
+			contents ]
 ]
 
 { #category : #accessing }

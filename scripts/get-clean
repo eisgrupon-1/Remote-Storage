@@ -1,0 +1,90 @@
+#!/bin/bash
+
+CACHE_FILE=clean-env.tgz
+declare -a FILES_TO_EXECUTE=
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+		--force-32)
+			PHARO_URL=get.pharo.org
+			;;
+		--fresh)
+			echo "Cleaning Cache" && rm -f "$CACHE_FILE"
+			;;
+		--clean)
+			DOWNLOAD=NO
+			;;
+		*.st)
+			FILES_TO_EXECUTE+=("$(readlink -e "$1")")
+			;;
+		*)
+			echo "Usage: $0 <opts> <*.st>" 1>&2
+			echo "Any smalltalk file will be evaluated after loading the clean image, save the image." 1>&2
+			echo '--clean just clean the environment' 1>&2
+			echo '--force-32 force use of 32 bit pharo on 64 bit systems' 1>&2
+			echo '--help for this message' 1>&2
+			echo "--fresh to ignore the cache file [$CACHE_FILE]" 1>&2
+			exit -1
+			;;
+	esac
+	shift
+done
+
+if [ -z "$PHARO_URL" ] && [ "$(uname -m)" == "x86_64" ] && [ "$(uname -s | head -c 5)" != "MINGW" ]; then
+	PHARO_URL=get.pharo.org/64
+else
+	PHARO_URL=get.pharo.org/
+fi
+
+# Clean Environment
+echo "Cleaning Environment"
+find . -maxdepth 1 -not \( -name "." -o -name "$CACHE_FILE" -o -name "$(basename "$0")" -o -name "startup.st" -o -name "user-properties" -o -name "start-api" \) -exec rm -rf {} \;
+
+if [ "$DOWNLOAD" != "NO" ]; then
+	if [ -f "$CACHE_FILE" ]; then
+		echo "Restoring from Cache"
+		tar --gzip --extract --file "$CACHE_FILE"
+	else
+		echo "Downloading Pharo from $PHARO_URL"
+		if which curl > /dev/null; then
+		   	curl --fail --silent --show-error --location "${PHARO_URL}" | bash
+		else
+			wget --output-document - --quiet "${PHARO_URL}" | bash
+		fi
+
+		echo "Saving downloaded files to Cache"
+		tar --gzip --create --file "$CACHE_FILE" --exclude="$CACHE_FILE" --exclude="$(basename "$0")" --exclude="startup.st" --exclude="user-properties" ./*
+	fi
+fi
+
+if [ -f pharo ]; then
+	for script in "${FILES_TO_EXECUTE[@]}"; do
+		if [ ! -z "$script" ]; then
+			echo "Executing $script"
+			./pharo Pharo.image eval """
+			$(cat "$script").
+			SmalltalkImage current
+			closeSourceFiles;
+			openSourceFiles;
+			snapshot: true andQuit: true
+			"""
+		fi
+	done
+fi
+
+
+echo "Executing Remote Storage Load"
+./pharo Pharo.image eval """
+	Metacello new 
+		baseline: 'RemoteStorage';
+		githubUser: 'eisgrupon-1'
+		project: 'Remote-Storage-Backend'
+		commitish: 'master'
+		path: 'source';
+		load.
+	SmalltalkImage current
+	closeSourceFiles;
+	openSourceFiles;
+	snapshot: true andQuit: true
+"""
+

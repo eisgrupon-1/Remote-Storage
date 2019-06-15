@@ -1,6 +1,9 @@
 Class {
 	#name : #RemoteStorageCommandLineHandler,
 	#superclass : #ApplicationStarterCommandLineHandler,
+	#instVars : [
+		'rootSystem'
+	],
 	#category : #'RemoteStorage-Model-API'
 }
 
@@ -36,7 +39,6 @@ RemoteStorageCommandLineHandler >> configurationDefinition [
 
 { #category : #'private - accessing' }
 RemoteStorageCommandLineHandler >> controllers [
-	| rootSystem |
 	rootSystem := self rootSystem.
 	^ OrderedCollection new
 		add:
@@ -68,5 +70,12 @@ RemoteStorageCommandLineHandler >> startServedOn: anUrl listeningOn: aPort [
 		installing: self controllers.
 	server
 		install;
-		start
+		start.
+	self uploadServer start
+]
+
+{ #category : #'private - accessing' }
+RemoteStorageCommandLineHandler >> uploadServer [
+	^ FileUploadController
+		within: rootSystem >> #FileManagementSystemInterface
 ]
