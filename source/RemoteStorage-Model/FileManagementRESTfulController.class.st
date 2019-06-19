@@ -13,17 +13,6 @@ FileManagementRESTfulController class >> within: aFileManagementSystem [
 ]
 
 { #category : #'private - accessing' }
-FileManagementRESTfulController >> createFileBasedOn: anHttpRequest within: aContext [
-	^ self
-		withCreatedResourceDo: [ :file | 
-			self fileManagementSystem createFile: file.
-			file ]
-		decodedUsing: self specification fileMappingKey
-		basedOn: anHttpRequest
-		within: aContext
-]
-
-{ #category : #'private - accessing' }
 FileManagementRESTfulController >> deleteFileBasedOn: anHttpRequest within: aContext [
 	| uuid |
 	uuid := anHttpRequest at: #identifier.

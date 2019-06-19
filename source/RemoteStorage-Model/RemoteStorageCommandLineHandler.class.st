@@ -48,6 +48,12 @@ RemoteStorageCommandLineHandler >> controllers [
 ]
 
 { #category : #'private - accessing' }
+RemoteStorageCommandLineHandler >> downloadServer [
+	^ FileDownloadController
+		within: rootSystem >> #FileManagementSystemInterface
+]
+
+{ #category : #'private - accessing' }
 RemoteStorageCommandLineHandler >> logPrefix [
 	^ 'remote-storage'
 ]
@@ -71,7 +77,8 @@ RemoteStorageCommandLineHandler >> startServedOn: anUrl listeningOn: aPort [
 	server
 		install;
 		start.
-	self uploadServer start
+	self uploadServer start.
+	self downloadServer start
 ]
 
 { #category : #'private - accessing' }
