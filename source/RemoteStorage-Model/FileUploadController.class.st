@@ -8,7 +8,7 @@ Class {
 	#category : #'RemoteStorage-Model-API'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Instance Creation' }
 FileUploadController class >> within: aFileManagementSystem [
 	^ self new initializeWithin: aFileManagementSystem
 ]

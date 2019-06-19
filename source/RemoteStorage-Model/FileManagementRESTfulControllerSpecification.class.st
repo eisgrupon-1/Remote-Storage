@@ -5,17 +5,6 @@ Class {
 }
 
 { #category : #configuration }
-FileManagementRESTfulControllerSpecification >> addJsonFileVersion1dot0dot0DecoderMappingIn: aBuilder [
-	aBuilder
-		addDefaultRuleToDecode: self fileVersion1dot0dot0MediaType
-		to: self fileMappingKey
-		using: [ :json :context | 
-			| raw |
-			raw := NeoJSONObject fromString: json.
-			RawFile from: raw ]
-]
-
-{ #category : #configuration }
 FileManagementRESTfulControllerSpecification >> addJsonFileVersion1dot0dot0MappingIn: aBuilder [
 	aBuilder
 		addDefaultRuleToEncode: self fileMappingKey
@@ -41,7 +30,7 @@ FileManagementRESTfulControllerSpecification >> addJsonFilesVersion1dot0dot0Mapp
 						for: RSFile
 							do: [ :mapping | 
 							mapping
-								mapAccessors: #(#name #sizeAsBytes);
+								mapAccessors: #(#name #sizeAsBytes #uuid);
 								mapAsHypermediaControls: [ :file | context hypermediaControlsFor: file ] ];
 						nextPut: resource ] ]
 ]
