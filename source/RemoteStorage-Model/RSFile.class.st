@@ -14,12 +14,12 @@ RSFile class >> from: aFileReference [
 	^ self new initializeFrom: aFileReference
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 RSFile >> filePath [
 	^ 'RSFiles/' , fileReference pathSegments last
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 RSFile >> fileReference [
 	^ fileReference
 ]
@@ -29,28 +29,19 @@ RSFile >> initializeFrom: aFileReference [
 	fileReference := aFileReference
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 RSFile >> name [
 	^ fileReference pathSegments last
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 RSFile >> printOn: aStream [
 	aStream
-		nextPutAll: 'Nombre: ' , self name;
+		nextPutAll: 'Nombre: ';
+		nextPutAll: self name;
 		tab;
-		nextPutAll: 'Tamaño: ' , self sizeAsBytes asString
-]
-
-{ #category : #acccessing }
-RSFile >> rawContents [
-	^ FileStream
-		fileNamed: self filePath
-		do: [ :fileStream | 
-			| contents |
-			contents := fileStream contentsOfEntireFile.
-			fileStream close.
-			contents ]
+		nextPutAll: 'Tamaño: ';
+		nextPutAll: self sizeAsBytes asString
 ]
 
 { #category : #accessing }

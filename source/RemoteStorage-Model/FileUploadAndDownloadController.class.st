@@ -1,5 +1,5 @@
 Class {
-	#name : #FileUploadController,
+	#name : #FileUploadAndDownloadController,
 	#superclass : #Object,
 	#instVars : [
 		'fileManagementSystem',
@@ -9,12 +9,12 @@ Class {
 }
 
 { #category : #'Instance Creation' }
-FileUploadController class >> within: aFileManagementSystem [
+FileUploadAndDownloadController class >> within: aFileManagementSystem [
 	^ self new initializeWithin: aFileManagementSystem
 ]
 
 { #category : #initialization }
-FileUploadController >> configureServerResponseHeaders [
+FileUploadAndDownloadController >> configureServerResponseHeaders [
 	server
 		after:
 			'/*'
@@ -29,7 +29,19 @@ FileUploadController >> configureServerResponseHeaders [
 ]
 
 { #category : #initialization }
-FileUploadController >> handleFileUploadRequest: request [
+FileUploadAndDownloadController >> handleFileDownloadRequest: request [
+	| uuid |
+	uuid := request at: #identifier.
+	fileManagementSystem getAllFiles
+		detect: [ :file | file uuid asString = uuid ]
+		ifFound: [ :file | 
+			^ ZnResponse
+				ok: (ZnEntity bytes: file fileReference readStream wrappedStream upToEnd) ]
+		ifNone: [ ^ ZnResponse badRequest: request ]
+]
+
+{ #category : #initialization }
+FileUploadAndDownloadController >> handleFileUploadRequest: request [
 	| part newFile |
 	(request hasEntity
 		and: [ request contentType matches: ZnMimeType multiPartFormData ])
@@ -47,7 +59,7 @@ FileUploadController >> handleFileUploadRequest: request [
 ]
 
 { #category : #initialization }
-FileUploadController >> initializeServer [
+FileUploadAndDownloadController >> initializeServer [
 	server := Teapot
 		configure:
 			{(#port -> 6790).
@@ -58,17 +70,22 @@ FileUploadController >> initializeServer [
 		any:
 			'/upload'
 				-> [ :req | 
-					req method = 'OPTIONS'
-						ifFalse: [ self handleFileUploadRequest: req ] ]
+					req method ~= 'OPTIONS'
+						ifTrue: [ self handleFileUploadRequest: req ] ];
+		any:
+			'/download/<identifier>/<filename>'
+				-> [ :req | 
+					req method ~= 'OPTIONS'
+						ifTrue: [ self handleFileDownloadRequest: req ] ]
 ]
 
 { #category : #initialization }
-FileUploadController >> initializeWithin: aFileManagementSystem [
+FileUploadAndDownloadController >> initializeWithin: aFileManagementSystem [
 	fileManagementSystem := aFileManagementSystem.
 	self initializeServer
 ]
 
 { #category : #initialization }
-FileUploadController >> start [
+FileUploadAndDownloadController >> start [
 	server start
 ]

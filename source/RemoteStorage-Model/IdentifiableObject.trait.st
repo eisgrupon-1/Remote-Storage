@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'uuid'
 	],
-	#category : #'RemoteStorage-Model-API'
+	#category : #'RemoteStorage-Model-Core'
 }
 
 { #category : #accessing }

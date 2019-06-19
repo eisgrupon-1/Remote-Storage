@@ -32,12 +32,13 @@ RSFileTests >> tearDown [
 
 { #category : #tests }
 RSFileTests >> testCreation [
-	| rsfile |
-	rsfile := RSFile
-		from: (Path from: './RSFiles/example.txt') asFileReference.
+	| rsfile fileReference |
+	fileReference := (Path from: './RSFiles/example.txt') asFileReference.
+	rsfile := RSFile from: fileReference.
 	self
 		assert: rsfile name equals: 'example.txt';
-		assert: rsfile sizeAsBytes equals: 15
+		assert: rsfile sizeAsBytes equals: 15;
+		assert: rsfile fileReference equals: fileReference
 ]
 
 { #category : #tests }
