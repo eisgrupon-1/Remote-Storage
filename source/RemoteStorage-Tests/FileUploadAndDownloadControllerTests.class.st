@@ -2,7 +2,8 @@ Class {
 	#name : #FileUploadAndDownloadControllerTests,
 	#superclass : #TestCase,
 	#instVars : [
-		'fileManagementSystem'
+		'fileManagementSystem',
+		'client'
 	],
 	#category : #'RemoteStorage-Tests-API'
 }
@@ -21,23 +22,24 @@ FileUploadAndDownloadControllerTests >> deleteExampleFile [
 
 { #category : #running }
 FileUploadAndDownloadControllerTests >> setUp [
-	fileManagementSystem := FileManagementSystem new.
-	self createExampleFile
+	fileManagementSystem := FileManagementSystem new
 ]
 
 { #category : #running }
 FileUploadAndDownloadControllerTests >> tearDown [
 	self deleteExampleFile.
-	Teapot stopAll
+	client server stop
 ]
 
 { #category : #running }
 FileUploadAndDownloadControllerTests >> testDownload [
 	self
 		withServerDo: [ :server | 
-			| client request |
+			| request |
+			self createExampleFile.
 			client := FileUploadAndDownloadController
 				within: fileManagementSystem.
+			client start.
 			request := ZnRequest
 				get:
 					'http://localhost:6790/download/'
@@ -49,9 +51,10 @@ FileUploadAndDownloadControllerTests >> testDownload [
 FileUploadAndDownloadControllerTests >> testUpload [
 	self
 		withServerDo: [ :server | 
-			| client request |
+			| request |
 			client := FileUploadAndDownloadController
 				within: fileManagementSystem.
+			client start.
 			request := ZnRequest post: 'http://localhost:6790/upload/'.
 			request
 				entity:
@@ -64,7 +67,7 @@ FileUploadAndDownloadControllerTests >> testUpload [
 									(ZnEntity
 										with: 'Some Contents'
 										type: ZnMimeType textPlain clearCharSet))).
-			client handleFileDownloadRequest: request ]
+			client handleFileUploadRequest: request ]
 ]
 
 { #category : #running }
