@@ -47,6 +47,7 @@ FileManagementRESTfulControllerSpecification >> fileMappingKey [
 
 { #category : #acccessing }
 FileManagementRESTfulControllerSpecification >> fileTemplate [
+	<ignoreForCoverage>
 	^ '<1s>/%<<2s>:IsUUID>'
 		expandMacrosWith: self endpoint
 		with: #identifier
@@ -64,6 +65,7 @@ FileManagementRESTfulControllerSpecification >> filesMappingKey [
 
 { #category : #acccessing }
 FileManagementRESTfulControllerSpecification >> getFilesRoute [
+	<ignoreForCoverage>
 	^ RouteSpecification
 		handling: #GET
 		at: self endpoint

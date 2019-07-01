@@ -31,7 +31,9 @@ FileUploadAndDownloadController >> configureServerResponseHeaders [
 { #category : #initialization }
 FileUploadAndDownloadController >> handleFileDownloadRequest: request [
 	| uuid |
-	uuid := request at: #identifier.
+	uuid := [ request at: #identifier ]
+		on: Error
+		do: [ :signal | request uri pathSegments last asString ].
 	fileManagementSystem getAllFiles
 		detect: [ :file | file uuid asString = uuid ]
 		ifFound: [ :file | 
@@ -83,6 +85,11 @@ FileUploadAndDownloadController >> initializeServer [
 FileUploadAndDownloadController >> initializeWithin: aFileManagementSystem [
 	fileManagementSystem := aFileManagementSystem.
 	self initializeServer
+]
+
+{ #category : #initialization }
+FileUploadAndDownloadController >> server [
+	^ server
 ]
 
 { #category : #initialization }
