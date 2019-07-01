@@ -25,6 +25,7 @@ FileManagementRESTfulController >> deleteFileBasedOn: anHttpRequest within: aCon
 
 { #category : #'private - accessing' }
 FileManagementRESTfulController >> entityTagOf: resource encodedAs: mediaType within: aContext [
+	<ignoreForCoverage>
 	^ ZnETag with: (MD5 hashMessage: resource printString) hex
 ]
 
