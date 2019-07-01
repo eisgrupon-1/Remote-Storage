@@ -1,8 +1,9 @@
 Class {
 	#name : #FileManagementRESTfulControllerTests,
-	#superclass : #ResourceRESTfulControllerTest,
+	#superclass : #TestCase,
 	#instVars : [
-		'fileManagementSystem'
+		'fileManagementSystem',
+		'resourceController'
 	],
 	#category : #'RemoteStorage-Tests-API'
 }
@@ -31,6 +32,11 @@ FileManagementRESTfulControllerTests >> getAllFiles [
 		within: self newHttpRequestContext
 ]
 
+{ #category : #accessing }
+FileManagementRESTfulControllerTests >> newHttpRequestContext [
+	^ HttpRequestContext new
+]
+
 { #category : #'private - support' }
 FileManagementRESTfulControllerTests >> requestToDeleteFile: aRSFileToDelete [
 	^ TeaRequest
@@ -48,6 +54,19 @@ FileManagementRESTfulControllerTests >> requestToGet: anUrl accepting: anAcceptH
 			((ZnRequest get: anUrl)
 				setAccept: anAcceptHeader;
 				yourself)
+]
+
+{ #category : #accessing }
+FileManagementRESTfulControllerTests >> resourceUrl [
+	^ self baseUrl / resourceController specification endpoint
+]
+
+{ #category : #running }
+FileManagementRESTfulControllerTests >> setUp [
+
+	super setUp.
+	self setUpResourceController.
+	resourceController serverUrl: self baseUrl asZnUrl
 ]
 
 { #category : #'private - support' }
@@ -114,4 +133,9 @@ FileManagementRESTfulControllerTests >> testGetFilesWhenThereIsAFile [
 { #category : #'private - support' }
 FileManagementRESTfulControllerTests >> urlOf: aRSFile [
 	^ (self resourceUrl / aRSFile uuid asString) asString
+]
+
+{ #category : #actions }
+FileManagementRESTfulControllerTests >> withJsonFromContentsIn: httpResponse do: aBlock [
+	aBlock value: (NeoJSONObject fromString: httpResponse contents)
 ]

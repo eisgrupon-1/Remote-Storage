@@ -71,11 +71,6 @@ RemoteStorageCommandLineHandler >> startServedOn: anUrl listeningOn: aPort [
 	server
 		install;
 		start.
-	self uploadAndDownloadServer start
-]
-
-{ #category : #'private - accessing' }
-RemoteStorageCommandLineHandler >> uploadAndDownloadServer [
-	^ FileUploadAndDownloadController
-		within: rootSystem >> #FileManagementSystemInterface
+	(FileUploadAndDownloadController
+		within: rootSystem >> #FileManagementSystemInterface) start
 ]
