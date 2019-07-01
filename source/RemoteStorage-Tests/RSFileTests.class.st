@@ -38,6 +38,7 @@ RSFileTests >> testCreation [
 	self
 		assert: rsfile name equals: 'example.txt';
 		assert: rsfile sizeAsBytes equals: 15;
+		assert: rsfile filePath equals: 'RSFiles/example.txt';
 		assert: rsfile fileReference equals: fileReference
 ]
 

@@ -21,6 +21,7 @@ FileManagementSystem >> deleteFileNamed: aFileName [
 
 { #category : #installing }
 FileManagementSystem >> dependencies [
+	<ignoreForCoverage>
 	^ #()
 ]
 
@@ -65,6 +66,7 @@ FileManagementSystem >> initializeFiles [
 
 { #category : #accessing }
 FileManagementSystem >> name [
+	<ignoreForCoverage>
 	^ 'Sistema de manejo de archivos'
 ]
 
