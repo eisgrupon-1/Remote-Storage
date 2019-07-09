@@ -79,13 +79,13 @@ El usuario podrá ingresar tanto con su apodo como con su email.
 
  ### Sprint 5 (17/6 - 24/6)
 
--[x] Implementar Suite de Test para la aplicación FrontEnd
--[x] Implementar test en smalltalk para el módulo de Backend
+- [x] Implementar Suite de Test para la aplicación FrontEnd
+- [x] Implementar test en smalltalk para el módulo de Backend
 
  ### Sprint 6 (24/6 - 1/7)
 
--[x] Completar y dejar subida la documentación faltante
--[x] Spike de investigación para CI con React JS
--[x] Implementar y dejar lista la configuración de travis para React JS
+- [x] Completar y dejar subida la documentación faltante
+- [x] Spike de investigación para CI con React JS
+- [x] Implementar y dejar lista la configuración de travis para React JS
 
 
