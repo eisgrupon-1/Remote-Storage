@@ -1,13 +1,13 @@
 ### Sprint 1 (22/5 - 27/5)
 
-- [x] Armar .gitignore files.
-- [x] Armar estructura minima del Repositorio de frontend en Reactjs.
-- [x] Armar README.md para Repositorio de Frontend.
-- [x] Armar estructura minima del Repositorio de backend en Java/Kotlin.
-- [x] Armar README.md para Repositorio de Backend.
-- [x] Agregar y configurar dependencias a JUnit y Cucumber para Backend.
-- [x] Agregar y configurar TravisCI y Codecov para Backend.
-- [x] Agregar README.md para seguimiento de Sprints en Repositorio de Backend.
+- [x] Armar .gitignore files. (1 SP)
+- [x] Armar estructura minima del Repositorio de frontend en Reactjs. (3 SP) 
+- [x] Armar README.md para Repositorio de Frontend. (1 SP)
+- [x] Armar estructura minima del Repositorio de backend en Java/Kotlin. (3 SP)
+- [x] Armar README.md para Repositorio de Backend.(1 SP)
+- [x] Agregar y configurar dependencias a JUnit y Cucumber para Backend. (3 SP)
+- [x] Agregar y configurar TravisCI y Codecov para Backend.(3 SP)
+- [x] Agregar README.md para seguimiento de Sprints en Repositorio de Backend. (1 SP)
 
 ### Sprint 2 (27/5 - 3/6)
 
@@ -73,5 +73,5 @@ El usuario podrá ingresar tanto con su apodo como con su email.
 
 ### Sprint 4 (10/6 - 17/6)
 
-- [x] Terminar de completar la historia pendiente Descarga de archivos
+- [x] Terminar de completar la historia pendiente Descarga de archivos 
 - [x] Terminar de completar la historia pendiente Subir archivos
