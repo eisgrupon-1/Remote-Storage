@@ -75,3 +75,14 @@ El usuario podrá ingresar tanto con su apodo como con su email.
 
 - [x] Terminar de completar la historia pendiente Descarga de archivos 
 - [x] Terminar de completar la historia pendiente Subir archivos
+
+- [x] Terminar de completar la historia pendiente Subir 
+
+ ### Sprint 5 (17/6 - 24/6)
+
+ ### Sprint 6 (24/6 - 1/7)
+
+ -[x] Implementar Suite de Test para la aplicación FrontEnd
+-[x] Implementar test en smalltalk para el módulo de Backend
+
+
